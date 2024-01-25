@@ -19,7 +19,6 @@ class HelloWorldSwing {
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         label.setBorder(border);
         label.setPreferredSize(new Dimension(150, 100));
-        label.setText("Hello World Swing");
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.CENTER);
 
