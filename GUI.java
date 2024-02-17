@@ -13,14 +13,6 @@ class GUI {
         frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
 
-        JLabel label = new JLabel("Hello World Swing");
-        Border border = BorderFactory.createLineBorder(Color.BLACK);
-        label.setBorder(border);
-        label.setPreferredSize(new Dimension(150, 100));
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setVerticalAlignment(JLabel.CENTER);
-
-        frame.add(label);
         frame.setVisible(true);
     }
 }
