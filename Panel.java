@@ -34,14 +34,6 @@ public class Panel extends JPanel {
         return new Dimension(WIDTH, HEIGHT);
     }
 
-    private int xToCol(int x) {
-        return (x - H_MARGIN) / CELL_SIZE;
-    }
-
-    private int yToRow(int y) {
-        return (y - V_MARGIN) / CELL_SIZE;
-    }
-
     public Panel() {
         super();
 
@@ -50,8 +42,8 @@ public class Panel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                int row = yToRow(e.getY());
-                int col = xToCol(e.getX());
+                int row = (e.getY() - V_MARGIN) / CELL_SIZE;
+                int col = (e.getX() - H_MARGIN) / CELL_SIZE;
 
                 cellStates.toggle(row, col);
 

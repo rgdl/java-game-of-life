@@ -89,7 +89,7 @@ class CellStates {
     }
 
     public void step() {
-        // Do NOT call newVals.step, or there will be an infinite loop
+        // Do NOT call newStates.step, or there will be an infinite loop
         CellStates newStates = new CellStates(nRows, nCols);
 
         // Get new states
