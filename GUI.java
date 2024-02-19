@@ -2,7 +2,7 @@ package com.java.hello.world;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -21,14 +21,12 @@ class GUI {
 			JFrame frame = new JFrame("Game of Life");
 			Panel panel = new Panel();
 			JButton runButton = new JButton("Run");
-			JButton stepButton = new JButton("Step");
 
-			frame.setLayout(new FlowLayout());
+			frame.setLayout(new BorderLayout());
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(panel.WIDTH, panel.HEIGHT);
 
-			panel.setBackground(new Color(50, 10, 150));
-			frame.add(runButton);
+			frame.add(runButton, BorderLayout.SOUTH);
 			panel.setLayout(null);
 
 			frame.getContentPane().add(panel);
@@ -37,7 +35,7 @@ class GUI {
             frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
 
-			Timer timer = new Timer(200, (e) -> {
+			Timer timer = new Timer(150, (e) -> {
 				panel.step();
 			});
 
@@ -45,7 +43,6 @@ class GUI {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					panel.randomise();
-
 					timer.start();
 				}
 			});

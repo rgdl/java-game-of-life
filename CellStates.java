@@ -33,7 +33,7 @@ class CellStates {
 			col < nCols;
 	}
 
-	private int countNeighbours(int row, int col) {
+	public int countNeighbours(int row, int col) {
 		int[] offsets = {-1, 0, 1};
 		int count = 0;
 

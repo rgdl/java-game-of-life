@@ -13,15 +13,19 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel {
-	private static final int H_MARGIN = 100;
-	private static final int V_MARGIN = 160;
+	private static final int H_MARGIN = 10;
+	private static final int V_MARGIN = 10;
 
-	private static final int NROWS = 20;
-	private static final int NCOLS = 30;
-	private static final int CELL_SIZE = 20;
+	private static final int NROWS = 50;
+	private static final int NCOLS = 80;
+	private static final int CELL_SIZE = 15;
 
 	public static final int WIDTH = H_MARGIN * 2 + CELL_SIZE * NCOLS;
 	public static final int HEIGHT = V_MARGIN * 2 + CELL_SIZE * NROWS;
+
+	static final Color BG_COLOUR = new Color(40, 0, 80);
+	static final Color GRID_COLOUR = new Color(100, 0, 100);
+	static final boolean DRAW_GRID = false;
 
 	private CellStates cellStates = new CellStates(NROWS, NCOLS);
 
@@ -40,6 +44,9 @@ public class Panel extends JPanel {
 
 	public Panel() {
 		super();
+
+		setBackground(BG_COLOUR);
+
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -53,10 +60,14 @@ public class Panel extends JPanel {
 		});
 	}
 
+	private Color getCellColour(int nNeighbours) {
+		int cappedNNeighbours = Math.min(nNeighbours, 5);
+		return new Color(150, 100 + 31 * cappedNNeighbours, 150);
+	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(new Color(200, 255, 200));
 
 		for (int row = 0; row < NROWS; row++) {
 			for (int col = 0; col < NCOLS; col++) {
@@ -64,6 +75,10 @@ public class Panel extends JPanel {
 				boolean shouldFill = cellStates.get(row, col);
 
 				if (shouldFill) {
+					Color cellColour = getCellColour(
+						cellStates.countNeighbours(row, col)
+					);
+					g.setColor(cellColour);
 					g.fillRect(
 						H_MARGIN + col * CELL_SIZE,
 						V_MARGIN + row * CELL_SIZE,
@@ -73,18 +88,21 @@ public class Panel extends JPanel {
 					continue;
 				}
 
-				g.drawRect(
-					H_MARGIN + col * CELL_SIZE,
-					V_MARGIN + row * CELL_SIZE,
-					CELL_SIZE,
-					CELL_SIZE
-				);
+				if (DRAW_GRID) {
+					g.setColor(GRID_COLOUR);
+					g.drawRect(
+						H_MARGIN + col * CELL_SIZE,
+						V_MARGIN + row * CELL_SIZE,
+						CELL_SIZE,
+						CELL_SIZE
+					);
+				}
 			}
 		}
 	}
 
 	public void randomise() {
-		cellStates.randomise(0.5f);
+		cellStates.randomise(0.7f);
 		repaint();
 	}
 
