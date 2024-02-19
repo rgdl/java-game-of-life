@@ -17,36 +17,36 @@ import javax.swing.border.Border;
 
 class GameOfLife {
     public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-			JFrame frame = new JFrame("Game of Life");
-			Panel panel = new Panel();
-			JButton runButton = new JButton("Run");
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Game of Life");
+            Panel panel = new Panel();
+            JButton runButton = new JButton("Run");
 
-			frame.setLayout(new BorderLayout());
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setSize(panel.WIDTH, panel.HEIGHT);
+            frame.setLayout(new BorderLayout());
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(panel.WIDTH, panel.HEIGHT);
 
-			frame.add(runButton, BorderLayout.SOUTH);
-			panel.setLayout(null);
+            frame.add(runButton, BorderLayout.SOUTH);
+            panel.setLayout(null);
 
-			frame.getContentPane().add(panel);
+            frame.getContentPane().add(panel);
 
-			frame.pack();
+            frame.pack();
             frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
+            frame.setVisible(true);
 
-			Timer timer = new Timer(150, (e) -> {
-				panel.step();
-			});
+            Timer timer = new Timer(150, (e) -> {
+                panel.step();
+            });
 
-			runButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					panel.randomise();
-					timer.start();
-				}
-			});
+            runButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    panel.randomise();
+                    timer.start();
+                }
+            });
 
-		});
+        });
     }
 }
