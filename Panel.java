@@ -58,8 +58,6 @@ public class Panel extends JPanel {
 		super.paintComponent(g);
 		g.setColor(new Color(200, 255, 200));
 
-		System.out.println("paintComponent");
-
 		for (int row = 0; row < NROWS; row++) {
 			for (int col = 0; col < NCOLS; col++) {
 
