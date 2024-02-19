@@ -3,11 +3,11 @@ package com.java.hello.world;
 import java.util.HashMap;
 import java.util.Random;
 
-class CellState {
+class CellStates {
 	// Index by row, then column
 	public HashMap<Integer, HashMap<Integer, Boolean>> data;
 
-	public CellState(int nRows, int nCols) {
+	public CellStates(int nRows, int nCols) {
 		data = new HashMap<>();
 
 		for (int row = 0; row < nRows; row++) {
@@ -29,13 +29,28 @@ class CellState {
 		return data.get(row).get(col);
 	}
 
-	public void randomise(float probability) {
-		Random random = new Random();
-
+	private void applyToCells(CellMap cellMap) {
 		for (int row : data.keySet()) {
 			for (int col : data.get(row).keySet()) {
-				data.get(row).put(col, random.nextFloat() > probability);
+				cellMap.apply(row, col);
 			}
 		}
 	}
+
+	public void randomise(float probability) {
+		Random random = new Random();
+		applyToCells((row, col) -> {
+			data.get(row).put(col, random.nextFloat() > probability);
+		});
+	}
+
+	public void step() {
+		applyToCells((row, col) -> {
+			toggle(row, col);
+		});
+	}
+}
+
+interface CellMap {
+	void apply(int row, int col);
 }

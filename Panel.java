@@ -23,7 +23,7 @@ public class Panel extends JPanel {
 	public static final int WIDTH = H_MARGIN * 2 + CELL_SIZE * NCOLS;
 	public static final int HEIGHT = V_MARGIN * 2 + CELL_SIZE * NROWS;
 
-	private CellState cellStates = new CellState(NROWS, NCOLS);
+	private CellStates cellStates = new CellStates(NROWS, NCOLS);
 
 	@Override
 	public Dimension getPreferredSize() {
@@ -87,6 +87,11 @@ public class Panel extends JPanel {
 
 	public void randomise() {
 		cellStates.randomise(0.5f);
+		repaint();
+	}
+
+	public void step() {
+		cellStates.step();
 		repaint();
 	}
 }

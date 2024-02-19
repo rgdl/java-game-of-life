@@ -19,12 +19,20 @@ class GUI {
 		SwingUtilities.invokeLater(() -> {
 			JFrame frame = new JFrame("Hello World Swing Example");
 			Panel panel = new Panel();
-			JButton button = new JButton("Run");
+			JButton runButton = new JButton("Run");
+			JButton stepButton = new JButton("Step");
 
-			button.addActionListener(new ActionListener() {
+			runButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					panel.randomise();
+				}
+			});
+
+			stepButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panel.step();
 				}
 			});
 
@@ -33,7 +41,8 @@ class GUI {
 			frame.setSize(panel.WIDTH, panel.HEIGHT);
 
 			panel.setBackground(new Color(50, 10, 150));
-			frame.add(button);
+			frame.add(runButton);
+			frame.add(stepButton);
 			panel.setLayout(null);
 
 			frame.getContentPane().add(panel);
