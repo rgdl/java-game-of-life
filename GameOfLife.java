@@ -27,12 +27,10 @@ class GameOfLife {
             frame.setSize(panel.WIDTH, panel.HEIGHT);
 
             frame.add(runButton, BorderLayout.SOUTH);
-            panel.setLayout(null);
 
             frame.getContentPane().add(panel);
 
             frame.pack();
-            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
             Timer timer = new Timer(150, (e) -> {
