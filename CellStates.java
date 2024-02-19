@@ -1,4 +1,4 @@
-package com.java.hello.world;
+package com.game.of.life;
 
 import java.util.HashMap;
 import java.util.Random;

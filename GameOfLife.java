@@ -1,4 +1,4 @@
-package com.java.hello.world;
+package com.game.of.life;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,8 +15,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
-class GUI {
-	public void createAndShow() {
+class GameOfLife {
+    public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			JFrame frame = new JFrame("Game of Life");
 			Panel panel = new Panel();
@@ -48,5 +48,5 @@ class GUI {
 			});
 
 		});
-	}
+    }
 }

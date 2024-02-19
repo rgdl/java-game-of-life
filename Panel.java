@@ -1,4 +1,4 @@
-package com.java.hello.world;
+package com.game.of.life;
 
 import java.awt.Color;
 import java.awt.Dimension;
